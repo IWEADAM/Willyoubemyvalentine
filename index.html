@@ -2,22 +2,43 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
-    <title>Be My Valentine? 💕</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Be My Valentine? 💕</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class ="container">
-        <h1>Will You Be My Valentine? 💘</h1>
-        <div class="buttons">
-            <button id="yesBtn" class="btn yes-btn">Yes!</button>
-            <button id="noBtn" class="btn no-btn">No</button>
-        </div>
-    <div id = "message"></div>
+    <!-- Floating hearts in background -->
+    <div class="floating-hearts">
+        <div class="floating-heart">💕</div>
+        <div class="floating-heart">💖</div>
+        <div class="floating-heart">💗</div>
+        <div class="floating-heart">💝</div>
+        <div class="floating-heart">💘</div>
     </div>
 
+    <!-- Envelope -->
+    <div class="envelope-wrapper" id="envelopeWrapper">
+        <div class="envelope" id="envelope">
+            <div class="envelope-flap"></div>
+            <div class="envelope-body"></div>
+            <div class="envelope-heart">💌</div>
+        </div>
+        <p class="click-text">Click to open! ✨</p>
+    </div>
 
+    <!-- Valentine Card (hidden initially) -->
+    <div class="card-container" id="cardContainer">
+        <div class="card">
+            <h1>Will You Be My Valentine?</h1>
+            <div class="big-heart">💖</div>
+            <div class="buttons">
+                <button id="yesBtn">Yes!</button>
+                <button id="noBtn">No</button>
+            </div>
+            <div id="message"></div>
+        </div>
+    </div>
+    
     <script src="index.js"></script>
 </body>
 </html>

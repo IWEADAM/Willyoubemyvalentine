@@ -1,6 +1,22 @@
+// Get elements
+const envelopeWrapper = document.getElementById('envelopeWrapper');
+const envelope = document.getElementById('envelope');
+const cardContainer = document.getElementById('cardContainer');
 const yesBtn = document.getElementById('yesBtn');
 const noBtn = document.getElementById('noBtn');
 const message = document.getElementById('message');
+
+// Open envelope on click
+envelopeWrapper.addEventListener('click', function() {
+    // Add opening animation to envelope
+    envelope.classList.add('open');
+    
+    // After a delay, hide envelope and show card
+    setTimeout(() => {
+        envelopeWrapper.style.display = 'none';
+        cardContainer.classList.add('show');
+    }, 800);
+});
 
 // When Yes button is clicked
 yesBtn.addEventListener('click', function() {
@@ -11,7 +27,7 @@ yesBtn.addEventListener('click', function() {
     }, 10);
 });
 
-// When No button is clicked it turns into a Yes button
+// When No button is clicked, it turns into a Yes button
 noBtn.addEventListener('click', function() {
     // Change the button text to Yes
     noBtn.textContent = 'Yes!';

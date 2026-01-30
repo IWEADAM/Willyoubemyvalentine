@@ -12,69 +12,226 @@ body {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    position: relative;
 }
 
-.container {
-    text-align: center;
-    background: rgba(255, 255, 255, 0.9);
-    padding: 60px 80px;
-    border-radius: 30px;
-    box-shadow: 0 20px 60px rgba(255, 105, 180, 0.3);
-    animation: float 3s ease-in-out infinite;
+/* Floating hearts background */
+.floating-hearts {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
 }
 
-@keyframes float {
-    0%, 100% { 
-        transform: translateY(0px); 
+.floating-heart {
+    position: absolute;
+    font-size: 2em;
+    animation: float-up 8s infinite ease-in;
+    opacity: 0;
+}
+
+.floating-heart:nth-child(1) {
+    left: 10%;
+    animation-delay: 0s;
+}
+
+.floating-heart:nth-child(2) {
+    left: 30%;
+    animation-delay: 2s;
+}
+
+.floating-heart:nth-child(3) {
+    left: 50%;
+    animation-delay: 4s;
+}
+
+.floating-heart:nth-child(4) {
+    left: 70%;
+    animation-delay: 1s;
+}
+
+.floating-heart:nth-child(5) {
+    left: 90%;
+    animation-delay: 3s;
+}
+
+@keyframes float-up {
+    0% {
+        bottom: -10%;
+        opacity: 0;
+        transform: translateX(0) rotate(0deg);
     }
-    50% { 
-        transform: translateY(-10px); 
+    50% {
+        opacity: 1;
+    }
+    100% {
+        bottom: 110%;
+        opacity: 0;
+        transform: translateX(100px) rotate(360deg);
+    }
+}
+
+/* Envelope styles */
+.envelope-wrapper {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    cursor: pointer;
+}
+
+.click-text {
+    margin-top: 30px;
+    font-size: 1.5em;
+    color: #ff1493;
+    font-weight: bold;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.7; transform: scale(1.05); }
+}
+
+.envelope {
+    position: relative;
+    width: 300px;
+    height: 200px;
+    transition: transform 0.5s ease;
+}
+
+.envelope:hover {
+    transform: scale(1.05);
+}
+
+.envelope-body {
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-bottom: 200px solid #ffb6c1;
+    z-index: 2;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    width: 0;
+    height: 0;
+    border-left: 150px solid transparent;
+    border-right: 150px solid transparent;
+    border-top: 100px solid #ff69b4;
+    z-index: 3;
+    transform-origin: top center;
+    transition: transform 0.8s ease;
+}
+
+.envelope.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-heart {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 4em;
+    z-index: 1;
+    animation: heartbeat 1.5s ease-in-out infinite;
+}
+
+@keyframes heartbeat {
+    0%, 100% { transform: translate(-50%, -50%) scale(1); }
+    25% { transform: translate(-50%, -50%) scale(1.2); }
+    50% { transform: translate(-50%, -50%) scale(1); }
+}
+
+/* Card styles */
+.card-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transition: opacity 0.5s ease;
+}
+
+.card-container.show {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 80px 100px;
+    border-radius: 40px;
+    box-shadow: 0 30px 80px rgba(255, 105, 180, 0.4);
+    text-align: center;
+    transform: scale(0.5);
+    transition: transform 0.5s ease;
+}
+
+.card-container.show .card {
+    transform: scale(1);
+    animation: pop-in 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+@keyframes pop-in {
+    0% {
+        transform: scale(0);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 1;
     }
 }
 
 h1 {
-    font-size: 3em;
+    font-size: 3.5em;
     color: #ff1493;
     margin-bottom: 30px;
-    text-shadow: 2px 2px 4px rgba(255, 105, 180, 0.3);
+    text-shadow: 3px 3px 6px rgba(255, 105, 180, 0.3);
 }
 
-.heart {
-    font-size: 4em;
-    animation: heartbeat 1.5s ease-in-out infinite;
+.big-heart {
+    font-size: 6em;
+    animation: heartbeat-big 1.5s ease-in-out infinite;
     display: inline-block;
-    margin: 20px 0;
+    margin: 30px 0;
 }
 
-@keyframes heartbeat {
-    0%, 100% { 
-        transform: scale(1); 
-    }
-    25% { 
-        transform: scale(1.1); 
-    }
-    50% { 
-        transform: scale(1); 
-    }
+@keyframes heartbeat-big {
+    0%, 100% { transform: scale(1); }
+    25% { transform: scale(1.15); }
+    50% { transform: scale(1); }
 }
 
 .buttons {
     display: flex;
-    gap: 20px;
+    gap: 30px;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 40px;
 }
 
 button {
-    padding: 20px 40px;
-    font-size: 1.5em;
+    padding: 25px 60px;
+    font-size: 2em;
     font-weight: bold;
     border: none;
-    border-radius: 50px;
+    border-radius: 60px;
     cursor: pointer;
     transition: all 0.3s ease;
     font-family: 'Comic Sans MS', cursive, sans-serif;
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
 }
 
 #yesBtn {
@@ -83,8 +240,8 @@ button {
 }
 
 #yesBtn:hover {
-    transform: scale(1.1);
-    box-shadow: 0 12px 25px rgba(255, 20, 147, 0.4);
+    transform: scale(1.15) rotate(-3deg);
+    box-shadow: 0 15px 30px rgba(255, 20, 147, 0.5);
 }
 
 #noBtn {
@@ -93,22 +250,22 @@ button {
 }
 
 #noBtn:hover {
-    transform: scale(1.05);
+    transform: scale(1.1);
 }
 
 #message {
-    margin-top: 30px;
-    font-size: 2em;
+    margin-top: 40px;
+    font-size: 2.5em;
     color: #ff1493;
     font-weight: bold;
-    min-height: 50px;
+    min-height: 60px;
     animation: fadeIn 0.5s ease-in;
 }
 
 @keyframes fadeIn {
     from { 
         opacity: 0; 
-        transform: translateY(-10px);
+        transform: translateY(-20px);
     }
     to { 
         opacity: 1; 
