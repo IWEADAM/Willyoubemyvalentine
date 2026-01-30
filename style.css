@@ -109,9 +109,9 @@ body {
     bottom: 0;
     width: 0;
     height: 0;
-    border-left: 150px solid transparent;
-    border-right: 150px solid transparent;
-    border-bottom: 200px solid #ffe9ec;
+    border-left: 150px solid #ffb6c1;
+    border-right: 150px solid #ffb6c1;
+    border-bottom: 200px solid #ffb6c1;
     z-index: 2;
 }
 
@@ -138,7 +138,7 @@ body {
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 4em;
-    z-index: 1;
+    z-index: 4;
     animation: heartbeat 1.5s ease-in-out infinite;
 }
 
